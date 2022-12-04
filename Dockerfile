@@ -11,6 +11,7 @@ WORKDIR /usr/src/app
 # A wildcard is used to ensure copying both package.json AND package-lock.json (when available).
 # Copying this first prevents re-running npm install on every code change.
 COPY --chown=node:node package*.json ./
+COPY init.sql /docker-entrypoint-initdb.d/
 
 RUN apt-get -qy update && apt-get -qy install openssl
 # Install app dependencies using the `npm ci` command instead of `npm install`
@@ -33,7 +34,7 @@ FROM node:lts As build
 WORKDIR /usr/src/app
 
 COPY --chown=node:node package*.json ./
-
+COPY init.sql /docker-entrypoint-initdb.d/
 # In order to run `npm run build` we need access to the Nest CLI.
 # The Nest CLI is a dev dependency,
 # In the previous development stage we ran `npm ci` which installed all dependencies.
