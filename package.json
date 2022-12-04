@@ -20,7 +20,8 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "prisma-generate": "rm -rf src/@generated/graphql; npx prisma generate",
-    "migration": "npx prisma migrate dev --name init"
+    "migration": "npx prisma migrate dev --name init",
+    "setup": "yarn prisma-generate && yarn migration"
   },
   "dependencies": {
     "@nestjs/apollo": "^10.1.6",
