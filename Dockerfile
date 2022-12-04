@@ -16,7 +16,7 @@ RUN apt-get -qy update && apt-get -qy install openssl
 # Install app dependencies using the `npm ci` command instead of `npm install`
 RUN yarn install
 
-RUN yarn prisma:generate
+RUN yarn prisma-generate
 
 # Bundle app source
 COPY --chown=node:node . .
