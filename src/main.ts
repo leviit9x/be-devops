@@ -10,7 +10,7 @@ async function bootstrap() {
   const configService = app.get(ConfigService);
 
   const port = configService.get('server.port');
-  await app.listen(port);
+  await app.listen(port, '0.0.0.0');
   console.log(`Application is running on: ${await app.getUrl()}`);
   console.log(`GraphQL Playground: ${await app.getUrl()}/graphql`);
   generateSchema();
